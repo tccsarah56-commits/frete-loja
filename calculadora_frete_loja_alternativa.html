@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calcular Frete</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0f0f0f;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    .box {
+      background: #171717;
+      padding: 32px;
+      border-radius: 24px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.05);
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 28px;
+      letter-spacing: 1px;
+    }
+
+    p {
+      color: #bdbdbd;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 14px;
+      margin-bottom: 16px;
+      font-size: 16px;
+      box-sizing: border-box;
+      background: #242424;
+      color: white;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 14px;
+      background: white;
+      color: black;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-weight: bold;
+    }
+
+    button:hover {
+      transform: scale(1.02);
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    a {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Calcule seu frete ✨</h1>
+    <p>Digite seu CEP para consultar o valor do envio.</p>
+
+    <input type="text" id="cep" placeholder="Seu CEP" maxlength="9">
+
+    <button onclick="calcularFrete()">
+      Calcular frete
+    </button>
+
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularFrete() {
+      const cep = document.getElementById('cep').value.replace(/\D/g, '');
+      const resultado = document.getElementById('resultado');
+
+      if (cep.length !== 8) {
+        resultado.innerHTML = '⚠️ Digite um CEP válido.';
+        return;
+      }
+
+      // TROQUE PELO CEP DA SUA LOJA
+      const origem = '24431690';
+
+      const link = `https://melhorenvio.com.br/calcular-frete?from=${origem}&to=${cep}`;
+
+      resultado.innerHTML = `
+        <br>
+        <a href="${link}" target="_blank">
+          Clique aqui para ver o valor do frete →
+        </a>
+      `;
+    }
+  </script>
+</body>
+</html>
